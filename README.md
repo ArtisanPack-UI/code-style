@@ -1,2 +1,22 @@
-# Digital Shopfront CMS CS
-This is the repository for the Digital Shopfront CMS CS package. You can learn more about [Digital Shopfront CMS here](https://gitlab.com/jacob-martella-web-design/digital-shopfront/digital-shopfront-core/digital-shopfront).
+# Digital Shopfront CMS Accessibility
+
+Description
+
+## Installation
+
+You can install the <name> package by running the following composer command.
+
+`composer require digitalshopfront/<name>`
+
+## Usage
+
+You can use any of the <package> functions like this:
+
+```
+Example Here
+```
+
+## Contributing
+
+As an open source project, this package is open to contributions from anyone. Please [read through the contributing
+guidelines](CONTRIBUTING.md) to learn more about how you can contribute to this project.
