@@ -1,6 +1,6 @@
 <?php
 
-namespace Digitalshopfront\PackageBlueprint;
+namespace ArtisanPackUI\PackageBlueprint;
 class Package
 {
 

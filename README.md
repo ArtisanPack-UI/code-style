@@ -1,16 +1,16 @@
-# Digital Shopfront CMS Accessibility
+# ArtisanPack UI Code Standards
 
 Description
 
 ## Installation
 
-You can install the <name> package by running the following composer command.
+You can install the ArtisanPack UI Code Standards package by running the following composer command.
 
-`composer require digitalshopfront/<name>`
+`composer require artisanpack-ui/code-standards`
 
 ## Usage
 
-You can use any of the <package> functions like this:
+You can use any of the Code Standards functions like this:
 
 ```
 Example Here
