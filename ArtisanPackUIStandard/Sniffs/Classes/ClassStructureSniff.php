@@ -1,0 +1,1 @@
+../../../src/ArtisanPackUI/Sniffs/Classes/ClassStructureSniff.php

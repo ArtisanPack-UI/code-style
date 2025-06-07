@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<ruleset name="ArtisanPackUIStandard">
+    <description>ArtisanPack UI's custom coding standards for PHP applications.</description>
+
+    <!-- Disable all default sniffs -->
+    <rule ref="PSR12">
+        <!-- Disable all PSR12 sniffs -->
+        <exclude name="PSR12"/>
+    </rule>
+
+    <!-- Include your custom sniffs -->
+    <rule ref="ArtisanPackUIStandard.Functions.DisallowedFunctions">
+        <!-- You can override properties here if needed -->
+        <!-- <properties>
+            <property name="disallowedFunctions" type="array">
+                <element key="die" value="Use exceptions."/>
+            </property>
+        </properties> -->
+    </rule>
+
+    <!-- Include formatting sniffs -->
+    <rule ref="ArtisanPackUIStandard.Formatting.Indentation">
+        <properties>
+            <property name="indent" value="4"/>
+        </properties>
+    </rule>
+
+    <rule ref="ArtisanPackUIStandard.Formatting.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="commentLineLimit" value="120"/>
+        </properties>
+    </rule>
+
+    <rule ref="ArtisanPackUIStandard.Formatting.Braces">
+        <properties>
+            <property name="openingBraceOnSameLine" value="true"/>
+        </properties>
+    </rule>
+
+    <rule ref="ArtisanPackUIStandard.Formatting.Spacing"/>
+
+    <rule ref="ArtisanPackUIStandard.Formatting.Alignment"/>
+
+    <!-- Include operators sniffs -->
+    <rule ref="ArtisanPackUIStandard.Operators.YodaConditionals"/>
+
+    <!-- Include PHP sniffs -->
+    <rule ref="ArtisanPackUIStandard.PHP.PhpTags"/>
+
+    <!-- Include strings sniffs -->
+    <rule ref="ArtisanPackUIStandard.Strings.Quotes"/>
+
+    <!-- Include naming conventions sniffs -->
+    <rule ref="ArtisanPackUIStandard.NamingConventions.NamingConventions"/>
+
+    <!-- Include control structures sniffs -->
+    <rule ref="ArtisanPackUIStandard.ControlStructures.ControlStructures"/>
+
+    <!-- Include arrays sniffs -->
+    <rule ref="ArtisanPackUIStandard.Arrays.ArraySyntax"/>
+
+    <!-- Include type hints sniffs -->
+    <rule ref="ArtisanPackUIStandard.TypeHints.TypeDeclaration"/>
+
+    <!-- Include imports sniffs -->
+    <rule ref="ArtisanPackUIStandard.Imports.ImportOrdering"/>
+
+    <!-- Include classes sniffs -->
+    <rule ref="ArtisanPackUIStandard.Classes.ClassStructure"/>
+
+    <!-- Global ignore patterns -->
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/bootstrap/*</exclude-pattern>
+    <exclude-pattern>*/storage/*</exclude-pattern>
+    <exclude-pattern>*/config/*</exclude-pattern>
+    <exclude-pattern>*/database/migrations/*</exclude-pattern>
+    <exclude-pattern>*/public/*</exclude-pattern>
+    <exclude-pattern>*/resources/views/*</exclude-pattern>
+
+    <!-- Specific paths to check -->
+    <file>app</file>
+    <file>src</file>
+    <file>routes</file>
+    <file>tests</file>
+    <file>resources/lang</file>
+</ruleset>

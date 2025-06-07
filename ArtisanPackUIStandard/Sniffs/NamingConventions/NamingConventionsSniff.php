@@ -1,0 +1,1 @@
+../../../src/ArtisanPackUI/Sniffs/NamingConventions/NamingConventionsSniff.php

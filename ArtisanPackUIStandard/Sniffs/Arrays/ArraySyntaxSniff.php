@@ -1,0 +1,1 @@
+../../../src/ArtisanPackUI/Sniffs/Arrays/ArraySyntaxSniff.php

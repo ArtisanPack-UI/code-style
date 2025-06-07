@@ -1,0 +1,1 @@
+../../../src/ArtisanPackUI/Sniffs/TypeHints/TypeDeclarationSniff.php
