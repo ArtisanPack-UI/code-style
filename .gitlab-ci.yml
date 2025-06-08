@@ -18,7 +18,6 @@ include:
 create_release:
   stage: release
   image: alpine:latest # Changed to a more generic alpine image to ensure basic utilities are available
-  # Removed 'shell: bash' as it's an unsupported key in some GitLab Runner versions.
   before_script:
     # Install necessary tools: grep, sed, bash (for advanced shell features if needed), and curl
     # apk is Alpine's package manager. --no-cache speeds up the installation.
@@ -32,22 +31,25 @@ create_release:
   rules:
     - if: $CI_COMMIT_TAG # This job will only run when a Git tag is pushed
   script:
-    # Wrap the entire script in 'bash -c' to ensure all commands are executed by bash,
-    # resolving potential compatibility issues with the default 'ash' shell in Alpine.
+    # Wrap the entire script in 'bash -c' to ensure all commands are executed by bash.
+    # Variables that depend on $CI_COMMIT_TAG must be defined inside this block
+    # so they are correctly expanded by the inner bash shell.
     - |
       bash -c '
         echo "Creating GitLab release for tag: $CI_COMMIT_TAG"
 
         # Extract the version number from the Git tag (e.g., 'v1.2.3' -> '1.2.3')
+        # This variable must be defined inside the bash -c block
         RELEASE_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^v//')
 
         # Define markers for the start and end of the desired section in CHANGELOG.md
         # Assumes CHANGELOG.md headings are like '## [X.Y.Z]'
+        # These variables must be defined inside the bash -c block
         START_MARKER="## \\[${RELEASE_VERSION}\\]"
         END_MARKER="## \\[[0-9]*\\.[0-9]*\\.[0-9]*\\]" # Matches the next version heading
 
         # Extract the block of text for the current release from CHANGELOG.md
-        # Using sed to get content between the current tag's heading and the next heading
+        # Using sed to get content between the current tag''s heading and the next heading
         # -n suppresses automatic printing, /pattern1/,/pattern2/p prints lines from pattern1 to pattern2.
         CHANGELOG_CONTENT=$(sed -n "/$START_MARKER/,/$END_MARKER/p" CHANGELOG.md)
 
@@ -62,7 +64,7 @@ create_release:
           grep -v "^# Changelog" | \
           sed -e 's/^[[:space:]]*//' -e '/^$/d')
 
-        # Fallback description if the specific version isn't found in CHANGELOG.md or is empty
+        # Fallback description if the specific version isn''t found in CHANGELOG.md or is empty
         if [ -z "$RELEASE_DESCRIPTION" ]; then
           echo "Warning: Could not find a specific description for tag $CI_COMMIT_TAG in CHANGELOG.md. Using a generic description."
           RELEASE_DESCRIPTION="Release $CI_COMMIT_TAG. Refer to CHANGELOG.md for detailed changes."
