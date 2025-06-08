@@ -86,9 +86,13 @@ prepare_release_description:
       echo "${RELEASE_DESCRIPTION_FINAL}"
       echo "----------------------------------------------------"
 
-      # Save the final description to a .env file.
+      # Escape newlines in RELEASE_DESCRIPTION_FINAL for the .env file
+      # The sed command will convert all newlines into literal '\n' sequences.
+      ESCAPED_RELEASE_DESCRIPTION=$(echo "${RELEASE_DESCRIPTION_FINAL}" | sed -E ':a;N;s/\n/\\n/g;ta')
+
+      # Save the final escaped description to a .env file.
       # This file will be picked up by the next job due to 'artifacts:reports:dotenv'.
-      echo "RELEASE_DESCRIPTION=${RELEASE_DESCRIPTION_FINAL}" > release.env
+      echo "RELEASE_DESCRIPTION=${ESCAPED_RELEASE_DESCRIPTION}" > release.env
       echo "Description saved to release.env"
   artifacts:
     reports:
