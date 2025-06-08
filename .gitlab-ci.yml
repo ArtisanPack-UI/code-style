@@ -37,51 +37,73 @@ create_release:
     # Add 'set -euxo pipefail' for verbose debugging and immediate exit on errors.
     - |
       bash -c '
-        set -euxo pipefail # Enable debugging flags
+        set -euxo pipefail # Enable debugging flags for debugging
 
-        echo "Creating GitLab release for tag: $CI_COMMIT_TAG"
+        echo "--- Debugging Release Script ---"
+        echo "CI_COMMIT_TAG: ${CI_COMMIT_TAG}"
 
-        # Extract the version number from the Git tag (e.g., 'v1.2.3' -> '1.2.3')
-        # This variable must be defined inside the bash -c block
-        RELEASE_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^v//')
+        # Ensure CI_JOB_TOKEN is available for release-cli authentication
+        if [ -z "${CI_JOB_TOKEN}" ]; then
+          echo "Error: CI_JOB_TOKEN is not available. Release CLI needs this for authentication."
+          exit 1
+        fi
+        echo "CI_JOB_TOKEN is available."
 
-        # Define markers for the start and end of the desired section in CHANGELOG.md
-        # Assumes CHANGELOG.md headings are like '## [X.Y.Z]'
-        # These variables must be defined inside the bash -c block
-        START_MARKER="## \\[${RELEASE_VERSION}\\]"
-        END_MARKER="## \\[[0-9]*\\.[0-9]*\\.[0-9]*\\]" # Matches the next version heading
-
-        # Extract the block of text for the current release from CHANGELOG.md
-        # Using sed to get content between the current tag''s heading and the next heading
-        # -n suppresses automatic printing, /pattern1/,/pattern2/p prints lines from pattern1 to pattern2.
-        CHANGELOG_CONTENT=$(sed -n "/$START_MARKER/,/$END_MARKER/p" CHANGELOG.md)
-
-        # Clean up the extracted content:
-        # 1. Remove the current version heading itself using grep -v (invert match).
-        # 2. Remove the next version heading (if it was included in the sed output) using grep -v.
-        # 3. Remove the "# Changelog" title if present using grep -v.
-        # 4. Remove leading/trailing whitespace and empty lines using sed -e commands.
-        RELEASE_DESCRIPTION=$(echo "$CHANGELOG_CONTENT" | \
-          grep -v "$START_MARKER" | \
-          grep -v "$END_MARKER" | \
-          grep -v "^# Changelog" | \
-          sed -e 's/^[[:space:]]*//' -e '/^$/d')
-
-        # Fallback description if the specific version isn''t found in CHANGELOG.md or is empty
-        if [ -z "$RELEASE_DESCRIPTION" ]; then
-          echo "Warning: Could not find a specific description for tag $CI_COMMIT_TAG in CHANGELOG.md. Using a generic description."
-          RELEASE_DESCRIPTION="Release $CI_COMMIT_TAG. Refer to CHANGELOG.md for detailed changes."
+        # Verify CHANGELOG.md exists in the current working directory
+        echo "Listing files in current directory ($(pwd)):"
+        ls -la
+        if [ ! -f "CHANGELOG.md" ]; then
+          echo "Error: CHANGELOG.md not found in the repository root. Cannot extract release description."
+          RELEASE_DESCRIPTION="Release ${CI_COMMIT_TAG}. No CHANGELOG.md found. Please create one."
+          # Continue to create a basic release even if CHANGELOG.md is missing
+          release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name "${CI_COMMIT_TAG}" --description "${RELEASE_DESCRIPTION}"
+          echo "Basic release created due to missing CHANGELOG.md."
+          exit 0 # Exit successfully after creating a basic release
         fi
 
-        echo "--- Release Description Content ---"
-        echo "$RELEASE_DESCRIPTION"
-        echo "-----------------------------------"
+        echo "CHANGELOG.md found. Attempting to read content."
+        echo "--- Start of CHANGELOG.md Content ---"
+        cat CHANGELOG.md
+        echo "--- End of CHANGELOG.md Content ---"
 
-        # Create the release using release-cli
-        # The --name argument sets the release title, often the same as the tag
-        # The --tag-name argument specifies which tag this release is associated with
-        # The --description argument uses the content extracted from CHANGELOG.md
+        # Extract the version number from the Git tag (e.g., 'v1.2.3' -> '1.2.3')
+        RELEASE_VERSION=$(echo "${CI_COMMIT_TAG}" | sed 's/^v//')
+        echo "Extracted RELEASE_VERSION: ${RELEASE_VERSION}"
+
+        # Define markers for the start and end of the desired section in CHANGELOG.md
+        START_MARKER="## \\[${RELEASE_VERSION}\\]"
+        END_MARKER="## \\[[0-9]*\\.[0-9]*\\.[0-9]*\\]" # Matches the next version heading
+        echo "START_MARKER: ${START_MARKER}"
+        echo "END_MARKER: ${END_MARKER}"
+
+        # Extract the block of text for the current release from CHANGELOG.md
+        CHANGELOG_CONTENT=$(sed -n "/${START_MARKER}/,/${END_MARKER}/p" CHANGELOG.md)
+        echo "Raw CHANGELOG_CONTENT extracted (may be empty if no match):"
+        echo "${CHANGELOG_CONTENT}"
+
+        # Clean up the extracted content:
+        # Check if CHANGELOG_CONTENT is empty before piping to grep/sed to avoid errors
+        if [ -z "${CHANGELOG_CONTENT}" ]; then
+          RELEASE_DESCRIPTION="" # Set to empty if no content extracted
+        else
+          RELEASE_DESCRIPTION=$(echo "${CHANGELOG_CONTENT}" | \
+            grep -v "${START_MARKER}" | \
+            grep -v "${END_MARKER}" | \
+            grep -v "^# Changelog" | \
+            sed -e 's/^[[:space:]]*//' -e '/^$/d')
+        fi
+
+        # Fallback description if the specific version isn''t found or extraction failed
+        if [ -z "${RELEASE_DESCRIPTION}" ] || [ "${RELEASE_DESCRIPTION}" = " " ]; then
+          echo "Warning: Could not find a specific description for tag ${CI_COMMIT_TAG} in CHANGELOG.md or extracted content was empty/whitespace. Using a generic description."
+          RELEASE_DESCRIPTION="Release ${CI_COMMIT_TAG}. Refer to CHANGELOG.md for detailed changes."
+        fi
+
+        echo "--- Final Release Description Content to be Used ---"
+        echo "${RELEASE_DESCRIPTION}"
+        echo "----------------------------------------------------"
+
         echo "Attempting to create release with release-cli..."
-        release-cli create --name "Release $CI_COMMIT_TAG" --tag-name "$CI_COMMIT_TAG" --description "$RELEASE_DESCRIPTION"
-        echo "release-cli command executed."
+        release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name "${CI_COMMIT_TAG}" --description "${RELEASE_DESCRIPTION}"
+        echo "Release-cli command executed successfully."
       '
