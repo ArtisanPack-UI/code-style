@@ -12,13 +12,22 @@ stages:
 
 sast:
   stage: test
-
 include:
   - template: Security/SAST.gitlab-ci.yml
 
 create_release:
   stage: release
-  image: registry.gitlab.com/gitlab-org/release-cli:latest # Use the official release-cli image
+  image: alpine:latest # Changed to a more generic alpine image to ensure basic utilities are available
+  before_script:
+    # Install necessary tools: grep, sed, bash (for advanced shell features if needed), and curl
+    # apk is Alpine's package manager. --no-cache speeds up the installation.
+    - apk add --no-cache grep sed bash curl
+    # Download and install release-cli.
+    # The --location flag follows redirects.
+    # The --output flag specifies the output file path.
+    - curl --location --output /usr/local/bin/release-cli "https://gitlab.com/gitlab-org/release-cli/-/releases/permalink/latest/downloads/release-cli-linux-amd64"
+    # Make the downloaded binary executable.
+    - chmod +x /usr/local/bin/release-cli
   rules:
     - if: $CI_COMMIT_TAG # This job will only run when a Git tag is pushed
   script:
@@ -32,13 +41,14 @@ create_release:
 
     # Extract the block of text for the current release from CHANGELOG.md
     # Using sed to get content between the current tag's heading and the next heading
+    # -n suppresses automatic printing, /pattern1/,/pattern2/p prints lines from pattern1 to pattern2.
     - CHANGELOG_CONTENT=$(sed -n "/$START_MARKER/,/$END_MARKER/p" CHANGELOG.md)
 
     # Clean up the extracted content:
-    # 1. Remove the current version heading itself.
-    # 2. Remove the next version heading (if it was included in the sed output).
-    # 3. Remove the "# Changelog" title if present.
-    # 4. Remove leading/trailing whitespace and empty lines.
+    # 1. Remove the current version heading itself using grep -v (invert match).
+    # 2. Remove the next version heading (if it was included in the sed output) using grep -v.
+    # 3. Remove the "# Changelog" title if present using grep -v.
+    # 4. Remove leading/trailing whitespace and empty lines using sed -e commands.
     - RELEASE_DESCRIPTION=$(echo "$CHANGELOG_CONTENT" | \
       grep -v "$START_MARKER" | \
       grep -v "$END_MARKER" | \
