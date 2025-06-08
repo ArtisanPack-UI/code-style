@@ -23,11 +23,14 @@ create_release:
     # apk is Alpine's package manager. --no-cache speeds up the installation.
     - apk add --no-cache grep sed bash curl
     # Download and install release-cli.
-    # The --location flag follows redirects.
-    # The --output flag specifies the output file path.
-    - curl --location --output /usr/local/bin/release-cli "https://gitlab.com/gitlab-org/release-cli/-/releases/permalink/latest/downloads/release-cli-linux-amd64"
+    # IMPORTANT: Changed to a specific version URL (v0.16.0) instead of 'permalink/latest'
+    # to ensure the binary is downloaded directly and not an HTML redirect.
+    - curl --location --output /usr/local/bin/release-cli "https://gitlab.com/gitlab-org/release-cli/-/releases/v0.16.0/downloads/release-cli-linux-amd64"
     # Make the downloaded binary executable.
     - chmod +x /usr/local/bin/release-cli
+    # Verify that the release-cli is executable and get its version
+    - echo "Verifying release-cli installation:"
+    - /usr/local/bin/release-cli --version
   rules:
     - if: $CI_COMMIT_TAG # This job will only run when a Git tag is pushed
   script:
@@ -56,7 +59,7 @@ create_release:
           echo "Error: CHANGELOG.md not found in the repository root. Cannot extract release description."
           RELEASE_DESCRIPTION="Release ${CI_COMMIT_TAG}. No CHANGELOG.md found. Please create one."
           # Continue to create a basic release even if CHANGELOG.md is missing
-          release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name "${CI_COMMIT_TAG}" --description "${RELEASE_DESCRIPTION}"
+          /usr/local/bin/release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name "${CI_COMMIT_TAG}" --description "${RELEASE_DESCRIPTION}"
           echo "Basic release created due to missing CHANGELOG.md."
           exit 0 # Exit successfully after creating a basic release
         fi
@@ -104,6 +107,7 @@ create_release:
         echo "----------------------------------------------------"
 
         echo "Attempting to create release with release-cli..."
-        release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name "${CI_COMMIT_TAG}" --description "${RELEASE_DESCRIPTION}"
+        # Explicitly call release-cli with its full path for safety, though it should be in PATH
+        /usr/local/bin/release-cli create --name "Release ${CI_COMMIT_TAG}" --tag-name "${CI_COMMIT_TAG}" --description "${RELEASE_DESCRIPTION}"
         echo "Release-cli command executed successfully."
       '
