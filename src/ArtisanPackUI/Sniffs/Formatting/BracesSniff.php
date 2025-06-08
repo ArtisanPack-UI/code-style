@@ -15,7 +15,7 @@ class BracesSniff implements Sniff
      *
      * @var bool
      */
-    public $openingBraceOnSameLine = true;
+    public $openingBraceOnSameLine = false;
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -62,7 +62,7 @@ class BracesSniff implements Sniff
         }
 
         $openingBrace = $token['scope_opener'];
-        
+
         // Check if the opening brace is on the correct line
         if ($this->openingBraceOnSameLine) {
             // Opening brace should be on the same line as the declaration
