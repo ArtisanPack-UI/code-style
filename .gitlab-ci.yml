@@ -34,8 +34,11 @@ create_release:
     # Wrap the entire script in 'bash -c' to ensure all commands are executed by bash.
     # Variables that depend on $CI_COMMIT_TAG must be defined inside this block
     # so they are correctly expanded by the inner bash shell.
+    # Add 'set -euxo pipefail' for verbose debugging and immediate exit on errors.
     - |
       bash -c '
+        set -euxo pipefail # Enable debugging flags
+
         echo "Creating GitLab release for tag: $CI_COMMIT_TAG"
 
         # Extract the version number from the Git tag (e.g., 'v1.2.3' -> '1.2.3')
@@ -70,9 +73,15 @@ create_release:
           RELEASE_DESCRIPTION="Release $CI_COMMIT_TAG. Refer to CHANGELOG.md for detailed changes."
         fi
 
+        echo "--- Release Description Content ---"
+        echo "$RELEASE_DESCRIPTION"
+        echo "-----------------------------------"
+
         # Create the release using release-cli
         # The --name argument sets the release title, often the same as the tag
         # The --tag-name argument specifies which tag this release is associated with
         # The --description argument uses the content extracted from CHANGELOG.md
+        echo "Attempting to create release with release-cli..."
         release-cli create --name "Release $CI_COMMIT_TAG" --tag-name "$CI_COMMIT_TAG" --description "$RELEASE_DESCRIPTION"
+        echo "release-cli command executed."
       '
