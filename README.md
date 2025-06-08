@@ -82,7 +82,11 @@ You can customize the behavior of the sniffs by overriding their properties in y
 </rule>
 ```
 
+## Documentation
+
+For detailed documentation on how to use and customize the ArtisanPack UI Code Standards package, please refer to the [documentation in the /docs directory](docs/home.md).
+
 ## Contributing
 
 As an open source project, this package is open to contributions from anyone. Please [read through the contributing
-guidelines](CONTRIBUTING.md) to learn more about how you can contribute to this project.
+guidelines](CONTRIBUTING.md) or the [contributing documentation](docs/contributing.md) to learn more about how you can contribute to this project.

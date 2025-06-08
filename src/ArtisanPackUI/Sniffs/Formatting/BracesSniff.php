@@ -12,10 +12,19 @@ class BracesSniff implements Sniff
 {
     /**
      * Whether the opening brace should be on the same line as the declaration.
+     * This applies to all constructs except functions.
      *
      * @var bool
      */
-    public $openingBraceOnSameLine = false;
+    public $openingBraceOnSameLine = true;
+
+    /**
+     * Whether function opening braces should be on the same line as the declaration.
+     * If false, function braces will be on the next line.
+     *
+     * @var bool
+     */
+    public $functionOpeningBraceOnSameLine = false;
 
     /**
      * Returns the token types that this sniff is interested in.
@@ -62,9 +71,12 @@ class BracesSniff implements Sniff
         }
 
         $openingBrace = $token['scope_opener'];
+        $isFunction = ($token['code'] === T_FUNCTION);
 
-        // Check if the opening brace is on the correct line
-        if ($this->openingBraceOnSameLine) {
+        // Determine if the opening brace should be on the same line based on the token type
+        $shouldBeOnSameLine = $isFunction ? $this->functionOpeningBraceOnSameLine : $this->openingBraceOnSameLine;
+
+        if ($shouldBeOnSameLine) {
             // Opening brace should be on the same line as the declaration
             if ($tokens[$openingBrace]['line'] !== $tokens[$stackPtr]['line']) {
                 // For functions, classes, etc., we need to check the parenthesis closing

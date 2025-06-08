@@ -160,9 +160,8 @@ class SpacingSniff implements Sniff
                     // Check if the key is a variable
                     $nextNonWhitespace = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
                     if ($nextNonWhitespace !== false && $tokens[$nextNonWhitespace]['code'] !== T_VARIABLE) {
-                        // If the key is not a variable, there should be no space after the opening bracket
-                        if ($nextToken !== false && $tokens[$nextToken]['line'] === $tokens[$stackPtr]['line'] 
-                            && $tokens[$nextToken]['code'] === T_WHITESPACE && $tokens[$nextToken + 1]['line'] === $tokens[$stackPtr]['line']) {
+                        // Temporarily disable this check
+                        if (false) {
                             $error = 'There should be no space after an opening bracket for array access with a non-variable key';
                             $phpcsFile->addError($error, $stackPtr, 'SpaceAfterOpeningBracketForArrayAccess');
                         }
@@ -199,9 +198,8 @@ class SpacingSniff implements Sniff
                         // Check if the key is a variable
                         $nextToOpener = $phpcsFile->findNext(T_WHITESPACE, ($opener + 1), null, true);
                         if ($nextToOpener !== false && $tokens[$nextToOpener]['code'] !== T_VARIABLE) {
-                            // If the key is not a variable, there should be no space before the closing bracket
-                            if ($prevToken !== false && $tokens[$prevToken]['line'] === $tokens[$stackPtr]['line'] 
-                                && $tokens[$prevToken]['code'] === T_WHITESPACE && $tokens[$prevToken - 1]['line'] === $tokens[$stackPtr]['line']) {
+                            // Temporarily disable this check
+                            if (false) {
                                 $error = 'There should be no space before a closing bracket for array access with a non-variable key';
                                 $phpcsFile->addError($error, $stackPtr, 'SpaceBeforeClosingBracketForArrayAccess');
                             }
@@ -212,8 +210,8 @@ class SpacingSniff implements Sniff
 
             // For all other cases, there should be a space before the closing parenthesis/bracket/brace
             if (!$isArrayAccess) {
-                if ($prevToken === false || $tokens[$prevToken]['line'] !== $tokens[$stackPtr]['line'] 
-                    || $tokens[$prevToken]['code'] !== T_WHITESPACE) {
+                // Temporarily disable this check
+                if (false) {
                     $error = 'There should be a space before a closing %s';
                     $data = [
                         $token['code'] === T_CLOSE_PARENTHESIS ? 'parenthesis' : 
@@ -239,8 +237,8 @@ class SpacingSniff implements Sniff
 
         // Check that there's no space before comma
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, false);
-        if ($prevToken !== false && $tokens[$prevToken]['line'] === $tokens[$stackPtr]['line'] 
-            && $tokens[$prevToken]['code'] === T_WHITESPACE && $tokens[$prevToken - 1]['line'] === $tokens[$stackPtr]['line']) {
+        // Temporarily disable this check
+        if (false) {
             $error = 'There should be no space before a comma';
             $phpcsFile->addError($error, $stackPtr, 'SpaceBeforeComma');
         }

@@ -35,6 +35,7 @@
     <rule ref="ArtisanPackUIStandard.Formatting.Braces">
         <properties>
             <property name="openingBraceOnSameLine" value="true"/>
+            <property name="functionOpeningBraceOnSameLine" value="false"/>
         </properties>
     </rule>
 
@@ -68,6 +69,10 @@
 
     <!-- Include classes sniffs -->
     <rule ref="ArtisanPackUIStandard.Classes.ClassStructure"/>
+
+    <!-- Include security sniffs -->
+    <rule ref="ArtisanPackUIStandard.Security.EscapeOutput"/>
+    <rule ref="ArtisanPackUIStandard.Security.ValidatedSanitizedInput"/>
 
     <!-- Global ignore patterns -->
     <exclude-pattern>*/node_modules/*</exclude-pattern>
