@@ -1,8 +1,12 @@
 # ArtisanPack UI Code Style
 
+## [1.0.3] - 2025-06-08
+### Fixed
+* Finally fixed issue with line length error incorrectly being displayed.
+
 ## [1.0.2] - 2025-06-08
 ### Fixed
-* Fixed issue with line length error incorrectly being displayed
+* Fixed issue with line length error incorrectly being displayed.
 
 ## [1.0.1] - 2025-06-08
 ### Fixed

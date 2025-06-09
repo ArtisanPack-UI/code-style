@@ -69,6 +69,9 @@ Here are some common properties you can customize for various sniffs:
         <!-- Number of spaces to replace a tab with when measuring line length -->
         <property name="tabWidth" value="4"/>
 
+        <!-- Whether to ignore comment lines completely -->
+        <property name="ignoreComments" value="false"/>
+
         <!-- Whether to show warnings (true) or errors (false) for long lines -->
         <property name="warnOnly" value="true"/>
     </properties>
