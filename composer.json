@@ -3,7 +3,7 @@
   "description": "package name",
   "type": "phpcodesniffer-standard",
   "license": "GPL-3.0-or-later",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "autoload": {
     "psr-4": {
       "ArtisanPackUI\\sniffs\\": "src/ArtisanPackUI/Sniffs/"
