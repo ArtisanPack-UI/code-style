@@ -48,7 +48,7 @@ Here are some common properties you can customize for various sniffs:
     <properties>
         <!-- Number of spaces for indentation (if not using tabs) -->
         <property name="indent" value="4"/>
-        
+
         <!-- Whether to use tabs (true) or spaces (false) for indentation -->
         <property name="tabIndent" value="true"/>
     </properties>
@@ -62,7 +62,13 @@ Here are some common properties you can customize for various sniffs:
     <properties>
         <!-- Maximum line length -->
         <property name="lineLimit" value="120"/>
-        
+
+        <!-- Maximum line length for comments -->
+        <property name="commentLineLimit" value="120"/>
+
+        <!-- Number of spaces to replace a tab with when measuring line length -->
+        <property name="tabWidth" value="4"/>
+
         <!-- Whether to show warnings (true) or errors (false) for long lines -->
         <property name="warnOnly" value="true"/>
     </properties>
@@ -87,7 +93,7 @@ Here are some common properties you can customize for various sniffs:
     <properties>
         <!-- Number of spaces around operators -->
         <property name="operatorSpacing" value="1"/>
-        
+
         <!-- Whether to require spaces inside parentheses -->
         <property name="spaceInsideParentheses" value="true"/>
     </properties>

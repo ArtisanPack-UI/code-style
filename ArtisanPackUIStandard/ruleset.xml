@@ -29,6 +29,7 @@
         <properties>
             <property name="lineLimit" value="120"/>
             <property name="commentLineLimit" value="120"/>
+            <property name="tabWidth" value="4"/>
         </properties>
     </rule>
 
