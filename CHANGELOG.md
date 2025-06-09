@@ -1,5 +1,9 @@
 # ArtisanPack UI Code Style
 
+## [1.0.4] - 2025-06-09
+### Fixed
+* Updated the composer.json file to remove references to Laravel and to add the package descriptions.
+
 ## [1.0.3] - 2025-06-08
 ### Fixed
 * Finally fixed issue with line length error incorrectly being displayed.
