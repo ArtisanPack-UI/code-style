@@ -54,7 +54,7 @@ Or if you've set up a custom `phpcs.xml` file:
 This package includes the following custom sniffs:
 
 1. **Indentation**: Ensures that indentation is done with real tabs instead of spaces, except when aligning variable assignments and array item definitions.
-2. **LineLength**: Ensures that lines do not exceed a specified length (120 characters by default).
+2. **LineLength**: [DISABLED] Previously ensured that lines did not exceed a specified length.
 3. **Braces**: Ensures that braces are placed correctly in various code constructs (on the same line as the declaration by default).
 4. **Spacing**: Ensures consistent spacing around operators, parentheses, brackets, and braces. Enforces spaces after opening brackets, braces, and parentheses, and spaces before closing brackets, braces, and parentheses. Also enforces space between if, elseif, for, while, foreach, etc. and the opening parenthesis, and space between closing parenthesis and opening bracket.
 5. **Alignment**: Ensures that equal signs are aligned for variable assignments and array item definitions that are right next to each other.
