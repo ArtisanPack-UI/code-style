@@ -25,21 +25,12 @@
         </properties>
     </rule>
 
-    <!-- Disable Generic.Files.LineLength and use our custom sniff instead -->
+    <!-- Line length rules are completely disabled -->
     <rule ref="Generic.Files.LineLength">
         <severity>0</severity>
     </rule>
 
-    <rule ref="ArtisanPackUIStandard.Formatting.LineLength">
-        <properties>
-            <property name="lineLimit" value="120"/>
-            <property name="commentLineLimit" value="120"/>
-            <property name="tabWidth" value="4"/>
-            <property name="ignoreComments" value="true"/>
-        </properties>
-        <exclude-pattern>*/Setting.php</exclude-pattern>
-        <exclude-pattern>*/SettingsManager.php</exclude-pattern>
-    </rule>
+    <!-- Custom line length rule has been removed as requested -->
 
 
     <rule ref="ArtisanPackUIStandard.Formatting.Braces">
@@ -94,11 +85,7 @@
     <exclude-pattern>*/public/*</exclude-pattern>
     <exclude-pattern>*/resources/views/*</exclude-pattern>
 
-    <!-- Exclude specific files from line length checks -->
-    <rule ref="Generic.Files.LineLength">
-        <exclude-pattern>*/Setting.php</exclude-pattern>
-        <exclude-pattern>*/SettingsManager.php</exclude-pattern>
-    </rule>
+    <!-- Line length checks are completely disabled, so no need for specific exclusions -->
 
     <!-- Specific paths to check -->
     <file>app</file>

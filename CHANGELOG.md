@@ -1,5 +1,10 @@
 # ArtisanPack UI Code Style
 
+## [1.0.5] - 2025-06-11
+### Fixed
+* Removed the line length rule check.
+* Updated TypeDeclarationSniff to skip property type checks for classes inside Models directories.
+
 ## [1.0.4] - 2025-06-09
 ### Fixed
 * Updated the composer.json file to remove references to Laravel and to add the package descriptions.
@@ -18,4 +23,3 @@
 
 ## [1.0.0] - 2025-06-08
 * Initial release
-
