@@ -57,7 +57,10 @@ Here are some common properties you can customize for various sniffs:
 
 ### LineLength
 
+> **Note:** The LineLength sniff has been disabled in the standard ruleset. The following customization options are no longer applicable unless you explicitly re-enable the sniff.
+
 ```xml
+<!-- This sniff is disabled by default -->
 <rule ref="ArtisanPackUI.Formatting.LineLength">
     <properties>
         <!-- Maximum line length -->

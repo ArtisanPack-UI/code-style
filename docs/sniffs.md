@@ -12,7 +12,7 @@ Ensures that indentation is done with real tabs instead of spaces, except when a
 ```php
 function example() {
 	$variable = 'value';  // Indented with a tab
-	
+
 	// Aligned variable assignments
 	$short  = 'value';
 	$longer = 'another value';
@@ -21,15 +21,17 @@ function example() {
 
 ### LineLength
 
-Ensures that lines do not exceed a specified length (120 characters by default).
+> **Note:** This sniff has been disabled in the standard ruleset. Line length is no longer enforced.
 
-**Example:**
+Previously, this sniff ensured that lines did not exceed a specified length (120 characters by default).
+
+**Example (no longer enforced):**
 ```php
-// This line is too long and would trigger a warning or error if it exceeds the configured maximum line length (default: 120 characters)
-$veryLongVariable = 'This is a very long string that would likely exceed the maximum line length if we continued to add more text to it.';
+// This line would have triggered a warning or error if it exceeded the configured maximum line length
+$veryLongVariable = 'This is a very long string that would have exceeded the maximum line length if we continued to add more text to it.';
 
-// Instead, break it up:
-$veryLongVariable = 'This is a very long string that would likely exceed the maximum line length '
+// Previously, you would have needed to break it up:
+$veryLongVariable = 'This is a very long string that would have exceeded the maximum line length '
 	. 'if we continued to add more text to it.';
 ```
 
@@ -153,7 +155,7 @@ Ensures that naming conventions are followed:
 // Correct
 class MyClass {
 	private $myVariable;
-	
+
 	public function myFunction() {
 		$db_column = 'value';
 	}
@@ -162,7 +164,7 @@ class MyClass {
 // Incorrect
 class my_class {
 	private $MyVariable;
-	
+
 	public function My_Function() {
 		$dbColumn = 'value';
 	}
@@ -276,9 +278,9 @@ Ensures that class structure follows the coding standards (Trait Use statements 
 // Correct
 class MyClass {
 	use MyTrait;
-	
+
 	private $property;
-	
+
 	public function myMethod() {
 		// code
 	}
@@ -289,9 +291,9 @@ class MyClass {
 	public function myMethod() {
 		// code
 	}
-	
+
 	use MyTrait;
-	
+
 	var $property;
 }
 ```
