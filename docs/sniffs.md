@@ -220,6 +220,8 @@ $inlineAssociative = ['key1' => 'value1', 'key2' => 'value2'];
 
 Ensures that all functions, parameters, and properties have type declarations unless it's not possible.
 
+**Note:** This sniff automatically skips property type checks for Laravel Model classes and any classes located in Models directories, as adding type declarations to model properties can cause issues with Laravel's property handling.
+
 **Example:**
 ```php
 // Correct
