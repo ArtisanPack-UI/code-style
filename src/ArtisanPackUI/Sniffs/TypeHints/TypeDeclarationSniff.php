@@ -168,6 +168,12 @@ class TypeDeclarationSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
+        // Check if the file is in a Models directory
+        $filePath = $phpcsFile->getFilename();
+        if (preg_match('/(^|\/)Models\//', $filePath)) {
+            return true;
+        }
+
         // Find the class token
         $classPtr = null;
         foreach ($tokens[$stackPtr]['conditions'] as $ptr => $type) {

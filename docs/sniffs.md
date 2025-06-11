@@ -12,7 +12,7 @@ Ensures that indentation is done with real tabs instead of spaces, except when a
 ```php
 function example() {
 	$variable = 'value';  // Indented with a tab
-	
+
 	// Aligned variable assignments
 	$short  = 'value';
 	$longer = 'another value';
@@ -153,7 +153,7 @@ Ensures that naming conventions are followed:
 // Correct
 class MyClass {
 	private $myVariable;
-	
+
 	public function myFunction() {
 		$db_column = 'value';
 	}
@@ -162,7 +162,7 @@ class MyClass {
 // Incorrect
 class my_class {
 	private $MyVariable;
-	
+
 	public function My_Function() {
 		$dbColumn = 'value';
 	}
@@ -217,6 +217,8 @@ $inlineAssociative = ['key1' => 'value1', 'key2' => 'value2'];
 ### TypeDeclaration
 
 Ensures that all functions, parameters, and properties have type declarations unless it's not possible.
+
+**Note:** This sniff automatically skips property type checks for Laravel Model classes and any classes located in Models directories, as adding type declarations to model properties can cause issues with Laravel's property handling.
 
 **Example:**
 ```php
@@ -276,9 +278,9 @@ Ensures that class structure follows the coding standards (Trait Use statements 
 // Correct
 class MyClass {
 	use MyTrait;
-	
+
 	private $property;
-	
+
 	public function myMethod() {
 		// code
 	}
@@ -289,9 +291,9 @@ class MyClass {
 	public function myMethod() {
 		// code
 	}
-	
+
 	use MyTrait;
-	
+
 	var $property;
 }
 ```
