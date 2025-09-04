@@ -12,6 +12,7 @@ ArtisanPack UI Code Standards is a custom PHP code style standard based on PHPSt
 - [Usage](usage.md)
 - [Custom Sniffs](sniffs.md)
 - [Customization](customization.md)
+- [AI Guidelines](ai-guidelines.md)
 - [Contributing](contributing.md)
 
 ## Quick Start
