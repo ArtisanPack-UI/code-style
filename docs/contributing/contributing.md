@@ -1,3 +1,7 @@
+---
+title: Contributing Guidelines
+---
+
 # Contributing to ArtisanPack UI Code Standards
 
 As an open source project, ArtisanPack UI is open to contributions from everyone. You don't need to be a developer to contribute. Whether it's contributing code, writing documentation, testing the package or anything in between, there's a place for you here to contribute.

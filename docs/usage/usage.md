@@ -1,10 +1,14 @@
+---
+title: Usage Guide
+---
+
 # Usage Guide
 
 This guide will help you understand how to use the ArtisanPack UI Code Standards package in your PHP projects.
 
 ## Basic Configuration
 
-After [installing the package](installation.md), you need to configure PHP_CodeSniffer to use the ArtisanPack UI standard.
+After [installing the package](../installation), you need to configure PHP_CodeSniffer to use the ArtisanPack UI standard.
 
 ### Creating a Configuration File
 
@@ -125,5 +129,5 @@ phpcs:
 
 Now that you know how to use the ArtisanPack UI Code Standards package, you might want to learn more about:
 
-- [Custom Sniffs](sniffs.md) included in the package
-- How to [customize the standard](customization.md) for your specific needs
+- [Custom Sniffs](../sniffs/sniffs) included in the package
+- How to [customize the standard](../customization/customization) for your specific needs
