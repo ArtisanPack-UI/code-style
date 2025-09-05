@@ -51,24 +51,15 @@ Or if you've set up a custom `phpcs.xml` file:
 
 ### Custom Sniffs
 
-This package includes the following custom sniffs:
+This package includes 16+ custom sniffs covering:
 
-1. **Indentation**: Ensures that indentation is done with real tabs instead of spaces, except when aligning variable assignments and array item definitions.
-2. **LineLength**: [DISABLED] Previously ensured that lines did not exceed a specified length.
-3. **Braces**: Ensures that braces are placed correctly in various code constructs (on the same line as the declaration by default).
-4. **Spacing**: Ensures consistent spacing around operators, parentheses, brackets, and braces. Enforces spaces after opening brackets, braces, and parentheses, and spaces before closing brackets, braces, and parentheses. Also enforces space between if, elseif, for, while, foreach, etc. and the opening parenthesis, and space between closing parenthesis and opening bracket.
-5. **Alignment**: Ensures that equal signs are aligned for variable assignments and array item definitions that are right next to each other.
-6. **YodaConditionals**: Ensures that Yoda conditionals are used (e.g., `if (true === $condition)` instead of `if ($condition === true)`).
-7. **PhpTags**: Ensures that opening and closing PHP tags are on separate lines, and that PHP tags are not used in Blade files.
-8. **Quotes**: Ensures that single quotes are used if not escaping a variable, and double quotes are used if escaping a variable.
-9. **NamingConventions**: Ensures that naming conventions are followed (Classes: PascalCase, Functions: camelCase, Variables: camelCase, Table columns: snake_case).
-10. **ControlStructures**: Ensures that control structures follow the correct format (if : elseif : else format in template/Blade files, bracket format in all other files).
-11. **ArraySyntax**: Ensures that arrays use the short syntax and that associative arrays with multiple items have each item on a new line.
-12. **TypeDeclaration**: Ensures that all functions, parameters, and properties have type declarations unless it's not possible.
-13. **MagicMethods**: Ensures that PHP magic functions are uppercase.
-14. **ImportOrdering**: Ensures that imports are ordered correctly (Classes, Functions, Constants).
-15. **ClassStructure**: Ensures that class structure follows the coding standards (Trait Use statements at the top of the class, visibility declared for all properties and methods, one class per file).
-16. **DisallowedFunctions**: Ensures that certain disallowed functions are not used (e.g., `die`, `exit`, `var_dump`, `print_r`).
+- **Formatting**: Indentation, braces, spacing, alignment
+- **Code Structure**: Classes, control structures, imports, arrays
+- **Naming Conventions**: PascalCase for classes, camelCase for functions/variables, snake_case for table columns
+- **Security**: Input validation, output escaping (see [Security Sniffs](docs/sniffs/security-sniffs))
+- **Best Practices**: Yoda conditionals, type declarations, disallowed functions
+
+For complete details on all sniffs with examples, see the [Custom Sniffs Reference](docs/sniffs/sniffs).
 
 ### Customizing Sniffs
 
@@ -84,9 +75,22 @@ You can customize the behavior of the sniffs by overriding their properties in y
 
 ## Documentation
 
-For detailed documentation on how to use and customize the ArtisanPack UI Code Standards package, please refer to the [documentation in the /docs directory](docs/home.md).
+📚 **[Complete Documentation](docs/home)** - Comprehensive guides and references
+
+### Quick Links
+- **[Installation Guide](docs/installation)** - Detailed installation instructions
+- **[Usage Guide](docs/usage/usage)** - Basic usage and IDE integration
+- **[Troubleshooting](docs/troubleshooting)** - Common issues and solutions
+- **[Customization Guide](docs/customization/customization)** - How to customize sniffs
+- **[All Sniffs Reference](docs/sniffs/sniffs)** - Complete sniff documentation
+- **[Security Sniffs](docs/sniffs/security-sniffs)** - Security-focused sniffs
 
 ## Contributing
 
-As an open source project, this package is open to contributions from anyone. Please [read through the contributing
-guidelines](CONTRIBUTING.md) or the [contributing documentation](docs/contributing.md) to learn more about how you can contribute to this project.
+🤝 **[Contributing Guidelines](docs/contributing/contributing)** - How to contribute to the project
+
+As an open source project, this package is open to contributions from anyone. Whether you want to report bugs, suggest features, improve documentation, or contribute code, please read through our comprehensive contributing guidelines.
+
+### Additional Resources
+- **[AI Guidelines](docs/contributing/ai-guidelines)** - Guidelines for AI-assisted development
+- **[Code of Conduct](docs/contributing/contributing#code-of-conduct)** - Community standards

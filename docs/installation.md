@@ -1,3 +1,7 @@
+---
+title: Installation Guide
+---
+
 # Installation
 
 This guide will walk you through the process of installing the ArtisanPack UI Code Standards package in your PHP project.
@@ -41,6 +45,6 @@ ls -la vendor/artisanpack-ui/code-style
 
 ## Next Steps
 
-Once you have installed the package, you can proceed to [configure it for your project](usage.md).
+Once you have installed the package, you can proceed to [configure it for your project](usage/usage).
 
-If you encounter any issues during installation, please check the [troubleshooting section](troubleshooting.md) or [open an issue](https://github.com/artisanpack-ui/code-style/issues) on our GitHub repository.
+If you encounter any issues during installation, please check the [troubleshooting section](troubleshooting) or [open an issue](https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-code-style/-/issues) on our GitLab repository.

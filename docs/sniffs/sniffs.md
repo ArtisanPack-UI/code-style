@@ -1,3 +1,7 @@
+---
+title: Custom Sniffs Reference
+---
+
 # Custom Sniffs
 
 The ArtisanPack UI Code Standards package includes a variety of custom sniffs that enforce consistent code style across your PHP projects. This document provides detailed information about each sniff and how it affects your code.

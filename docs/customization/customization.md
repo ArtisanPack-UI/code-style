@@ -1,3 +1,7 @@
+---
+title: Customization Guide
+---
+
 # Customizing ArtisanPack UI Code Standards
 
 This guide explains how to customize the ArtisanPack UI Code Standards to better fit your project's specific needs.
