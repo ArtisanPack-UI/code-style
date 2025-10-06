@@ -75,6 +75,9 @@
     <rule ref="ArtisanPackUIStandard.Security.EscapeOutput"/>
     <rule ref="ArtisanPackUIStandard.Security.ValidatedSanitizedInput"/>
 
+    <!-- Include ArtisanPack UI Livewire UI Components sniffs -->
+    <rule ref="ArtisanPack.Blade.DeprecatedComponentSyntaxSniff"/>
+
     <!-- Global ignore patterns -->
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
