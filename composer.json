@@ -6,7 +6,8 @@
   "version": "1.0.5",
   "autoload": {
     "psr-4": {
-      "ArtisanPackUI\\sniffs\\": "src/ArtisanPackUI/Sniffs/"
+      "ArtisanPackUI\\sniffs\\": "src/ArtisanPackUI/Sniffs/",
+      "ArtisanPackUI\\Laravel\\": "src/ArtisanPackUI/Laravel/"
     }
   },
   "autoload-dev": {
@@ -35,6 +36,11 @@
     }
   },
   "extra": {
-    "phpcodesniffer-standard": "ArtisanPackUIStandard"
+    "phpcodesniffer-standard": "ArtisanPackUIStandard",
+    "laravel": {
+      "providers": [
+        "ArtisanPackUI\\Laravel\\CodeStyleServiceProvider"
+      ]
+    }
   }
 }
