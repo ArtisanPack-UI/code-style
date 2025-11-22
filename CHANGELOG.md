@@ -1,5 +1,13 @@
 # ArtisanPack UI Code Style
 
+## [1.1.0] - 2025-11-22
+### Added
+* Added support for Laravel Boost.
+
+### Changed
+* Improved release packaging by excluding unnecessary development files via .gitattributes.
+* Enhanced .gitignore to exclude macOS system files (.DS_Store).
+
 ## [1.0.5] - 2025-06-11
 ### Fixed
 * Removed the line length rule check.

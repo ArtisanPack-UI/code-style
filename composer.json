@@ -3,10 +3,11 @@
   "description": "A custom PHP code style standard based on PHPStorm settings. This package provides custom sniffs for PHP_CodeSniffer that enforce consistent code style across your PHP projects.",
   "type": "phpcodesniffer-standard",
   "license": "GPL-3.0-or-later",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "autoload": {
     "psr-4": {
-      "ArtisanPackUI\\sniffs\\": "src/ArtisanPackUI/Sniffs/"
+      "ArtisanPackUI\\sniffs\\": "src/ArtisanPackUI/Sniffs/",
+      "ArtisanPackUI\\Laravel\\": "src/ArtisanPackUI/Laravel/"
     }
   },
   "autoload-dev": {
@@ -35,6 +36,11 @@
     }
   },
   "extra": {
-    "phpcodesniffer-standard": "ArtisanPackUIStandard"
+    "phpcodesniffer-standard": "ArtisanPackUIStandard",
+    "laravel": {
+      "providers": [
+        "ArtisanPackUI\\Laravel\\CodeStyleServiceProvider"
+      ]
+    }
   }
 }
