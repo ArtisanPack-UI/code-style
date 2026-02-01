@@ -13,20 +13,20 @@ ArtisanPack UI Code Standards is a custom PHP code style standard based on PHPSt
 ## Table of Contents
 
 ### Getting Started
-- [Installation](installation) - How to install the package
-- [Troubleshooting](troubleshooting) - Common issues and solutions
+- [Installation](Installation) - How to install the package
+- [Troubleshooting](Troubleshooting) - Common issues and solutions
 
 ### Usage & Configuration
-- [Usage Guide](usage/usage) - Basic usage instructions
-- [Customization](customization/customization) - How to customize the standard
+- [Usage Guide](Usage-Usage) - Basic usage instructions
+- [Customization](Customization-Customization) - How to customize the standard
 
 ### Sniffs Reference
-- [All Custom Sniffs](sniffs/sniffs) - Complete overview of all sniffs
-- [Security Sniffs](sniffs/security-sniffs) - Security-focused sniffs documentation
+- [All Custom Sniffs](Sniffs-Sniffs) - Complete overview of all sniffs
+- [Security Sniffs](Sniffs-Security-Sniffs) - Security-focused sniffs documentation
 
 ### Contributing
-- [Contributing Guidelines](contributing/contributing) - How to contribute to the project
-- [AI Guidelines](contributing/ai-guidelines) - Guidelines for AI-assisted development
+- [Contributing Guidelines](Contributing-Contributing) - How to contribute to the project
+- [AI Guidelines](Contributing-Ai-Guidelines) - Guidelines for AI-assisted development
 
 ## Quick Start
 

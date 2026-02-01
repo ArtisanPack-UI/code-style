@@ -45,6 +45,6 @@ ls -la vendor/artisanpack-ui/code-style
 
 ## Next Steps
 
-Once you have installed the package, you can proceed to [configure it for your project](usage/usage).
+Once you have installed the package, you can proceed to [configure it for your project](Usage-Usage).
 
-If you encounter any issues during installation, please check the [troubleshooting section](troubleshooting) or [open an issue](https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-code-style/-/issues) on our GitLab repository.
+If you encounter any issues during installation, please check the [troubleshooting section](Troubleshooting) or [open an issue](https://gitlab.com/jacob-martella-web-design/artisanpack-ui/artisanpack-ui-code-style/-/issues) on our GitLab repository.
