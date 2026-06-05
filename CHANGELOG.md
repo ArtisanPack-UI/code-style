@@ -1,5 +1,9 @@
 # ArtisanPack UI Code Style
 
+## [1.1.1] - 2026-06-05
+### Fixed
+* Prevented `boost:update` ParseError caused by a literal `<?xml` declaration in the core Boost guideline by escaping the opening PHP tag in the rendered snippet (#24, closes #23).
+
 ## [1.1.0] - 2025-11-22
 ### Added
 * Added support for Laravel Boost.
