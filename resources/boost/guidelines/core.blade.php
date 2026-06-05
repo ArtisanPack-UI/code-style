@@ -8,9 +8,7 @@ After installing via `composer require artisanpack-ui/code-style --dev`, create 
 
 @verbatim
 <code-snippet name="Basic phpcs.xml configuration" lang="xml">
-@endverbatim
-<{!! '?xml version="1.0"?>' !!}
-@verbatim
+&lt;?xml version="1.0"?>
 <ruleset name="ProjectStandard">
     <description>Project coding standard</description>
 

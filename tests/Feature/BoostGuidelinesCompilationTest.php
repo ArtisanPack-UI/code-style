@@ -32,6 +32,7 @@ it('compiles boost guideline blade files without producing a PHP parse error und
 
 		$output = [];
 		$status = 0;
+		// nosemgrep: php.lang.security.command-injection.command-injection
 		exec(sprintf('php -d short_open_tag=On -l %s 2>&1', escapeshellarg($tmpFile)), $output, $status);
 
 		expect($status)->toBe(0, sprintf(
