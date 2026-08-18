@@ -91,7 +91,7 @@ class TypeDeclarationSniff implements Sniff
             // Check if there's a type declaration before the parameter
             $typePtr = $phpcsFile->findPrevious([T_WHITESPACE, T_COMMA], $paramPtr - 1, $openParenPtr, true);
 
-            if ($typePtr === false || !in_array($tokens[$typePtr]['code'], [T_STRING, T_ARRAY_HINT, T_CALLABLE, T_SELF, T_PARENT, T_STATIC, T_FALSE, T_NULL, T_TRUE])) {
+            if ($typePtr === false || !in_array($tokens[$typePtr]['code'], [T_STRING, T_ARRAY, T_CALLABLE, T_SELF, T_PARENT, T_STATIC, T_FALSE, T_NULL, T_TRUE])) {
                 $error = 'Parameter %s should have a type declaration';
                 $data = [$tokens[$paramPtr]['content']];
                 $phpcsFile->addError($error, $paramPtr, 'MissingParameterTypeDeclaration', $data);
@@ -150,7 +150,7 @@ class TypeDeclarationSniff implements Sniff
         // Check if there's a type declaration before the property
         $typePtr = $phpcsFile->findPrevious([T_WHITESPACE, T_PUBLIC, T_PROTECTED, T_PRIVATE, T_VAR, T_STATIC], $stackPtr - 1, null, true);
 
-        if ($typePtr === false || !in_array($tokens[$typePtr]['code'], [T_STRING, T_ARRAY_HINT, T_CALLABLE, T_SELF, T_PARENT, T_STATIC, T_FALSE, T_NULL, T_TRUE])) {
+        if ($typePtr === false || !in_array($tokens[$typePtr]['code'], [T_STRING, T_ARRAY, T_CALLABLE, T_SELF, T_PARENT, T_STATIC, T_FALSE, T_NULL, T_TRUE])) {
             $error = 'Property %s should have a type declaration';
             $data = [$tokens[$stackPtr]['content']];
             $phpcsFile->addError($error, $stackPtr, 'MissingPropertyTypeDeclaration', $data);
