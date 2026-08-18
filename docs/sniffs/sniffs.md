@@ -325,4 +325,4 @@ Log::debug($variable);
 
 ## Further Customization
 
-For information on how to customize these sniffs for your specific needs, please refer to the [Customization](customization.md) guide.
+For information on how to customize these sniffs for your specific needs, please refer to the [Customization](Customization) guide.
