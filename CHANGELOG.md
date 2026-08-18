@@ -1,5 +1,15 @@
 # ArtisanPack UI Code Style
 
+## [1.2.0] - 2026-08-17
+### Added
+* Support for PHP_CodeSniffer 4.x. The `squizlabs/php_codesniffer` constraint is now `^3.7 || ^4.0`, unblocking downstream projects that want to upgrade to PHPCS 4.x.
+
+### Fixed
+* Replaced the removed `T_ARRAY_HINT` token with `T_ARRAY` in `TypeDeclarationSniff` so the custom sniffs run without a fatal error under PHPCS 4.x while remaining compatible with 3.x.
+
+### Changed
+* `tests/TestCase.php` now extends PHPUnit's base test case instead of Laravel's, and the feature suite runs the standard against a sample file to verify sniffs fire.
+
 ## [1.1.1] - 2026-06-05
 ### Fixed
 * Prevented `boost:update` ParseError caused by a literal `<?xml` declaration in the core Boost guideline by escaping the opening PHP tag in the rendered snippet (#24, closes #23).
